@@ -5,7 +5,6 @@
 		.controller('SpicyController', ['$http','$q',SpicyController])
 		.config(['$httpProvider',function($httpProvider){
 		  $httpProvider.defaults.cache = true;
-		//	$httpProvider.defaults.headers.get = {};
 			$httpProvider.interceptors.push(function($q){
 			  return{
 			    'request':function(config){
@@ -16,9 +15,9 @@
 			      console.log(response);
 			       return response;
 			    }
-			  }
-			})
-		}])
+			  };
+			});
+		}]);
 	
 	function SpicyController($http,$q) {
 		
@@ -47,7 +46,7 @@
 		  var deffered = $q.defer();
 		  
 	  	$http({method:'GET',
-		   url:'http://127.0.0.1:31999/New%20folder/response.json'}
+		   url:'http://127.0.0.1:31999/angularWork/response.json'}
 		   )
 		   .success(function(data,status){
 		     deffered.resolve(data);
