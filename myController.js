@@ -1,26 +1,19 @@
 (function() {
   'use strict';
-	angular
-		.module('spicyApp1', [])
-		.controller('SpicyController', ['$http','$q',SpicyController])
-		.config(['$httpProvider',function($httpProvider){
-		  $httpProvider.defaults.cache = true;
-			$httpProvider.interceptors.push(function($q){
-			  return{
-			    'request':function(config){
-			      console.log(config);
-			      return config;
-			    },
-			    'response':function(response){
-			      console.log(response);
-			       return response;
-			    }
-			  };
-			});
-		}]);
-	
-	function SpicyController($http,$q) {
-		
+  
+  
+  	function SpicyController($http,$q) {
+	  var vm = this;
+		vm.name = "kushagra";
+		vm.format = 'M/d/yy h:mm:ss a';
+		vm.kushagra = {
+		  name:'kushagra',
+		  address:'A16 202 - Megapolis sunway'
+		}
+		vm.sunny={
+		  name:'Sunny',
+		  address:'119 G indrapuram ghazibad'
+		}
 	/*	$http({method:'GET',
 			   url:'http://127.0.0.1:31999/New%20folder/response.json'}
 			   ).then(function(response){
@@ -80,7 +73,60 @@
      // console.log("promise2 resolved");
     })        
 			   
-		var vm = this;
-		vm.name = "kushagra";
+	
 	}
+  
+	angular
+		.module('spicyApp1', [])
+		.controller('SpicyController', ['$http','$q',SpicyController])
+		.config(['$httpProvider',function($httpProvider){
+		  $httpProvider.defaults.cache = true;
+			$httpProvider.interceptors.push(function($q){
+			  return{
+			    'request':function(config){
+			      console.log(config);
+			      return config;
+			    },
+			    'response':function(response){
+			      console.log(response);
+			       return response;
+			    }
+			  };
+			});
+		}])
+		.directive('myDirective',function(){
+      return {
+        restrict:'E',
+        scope:{
+          customerInfo:'=info'
+        },
+        templateUrl:'my-customer.html'
+      } 
+    })
+    .directive('myCurrentTime',['$interval','dateFilter',function($interval,dateFilter){
+        function link(scope,element,attrs){
+          var format,timeoutId;
+          
+          function updateTime(){
+            element.text(dateFilter(new Date(), format));
+          }
+          
+          scope.$watch(attrs.mycurrentTime, function(value){
+            format = value;
+            updateTime();
+          });
+          
+          element.on('$destroy',function(){
+            $intervalCancle(timeoutId);
+          });
+          
+          timeoutId = $interval(function(){
+            updateTime();
+          },1000);
+          
+        }
+        
+        return {link:link};
+    }]);
+
 })();

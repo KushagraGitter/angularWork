@@ -4,14 +4,27 @@
   <meta charset="UTF-8">
   <title>Example - example-example8-production</title>
   <script src="angular.js"></script>
+  <script src="main.js"></script>
+  
   <script src="myController.js"></script>
-  <!--<script src="directive.js"></script>-->
+  
+  
  
 </head>
 <body ng-app="spicyApp1">
+  
 	<div ng-controller="SpicyController as vm">
-		<input type="text" ng-model="vm.name"/>
-		<span ng-bind="vm.name"><span>
-	</div>
+	  <div>
+	    <my-directive info="vm.kushagra">
+	    </my-directive>
+	  </div>
+	  <div>
+	    <my-directive info="vm.sunny">
+	    </my-directive></div>
+	  </div>
+	  <div ng-controller="Controller">
+      Date format: <input ng-model="vm.format"> <hr/>
+      Current time is: <span my-current-time="vm.format"></span>
+    </div>
 </body>
 </html>
