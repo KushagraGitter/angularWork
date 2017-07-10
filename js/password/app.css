@@ -19,3 +19,11 @@
 label.strengthLabel{
     display: none;
 }
+.red{
+    display: block;
+    background: red;
+}
+.green{
+    display: block;
+    background: green;
+}

@@ -16,15 +16,26 @@
     Password.prototype.checkStrength = function () {
 
         //Entering Letter only
-        var reg = new RegExp('^[a-zA-Z]$');
-        var strengthTest = reg.test(this.passwordValue);
-
-        var reg = new RegExp('^[0-9]+$');
-        var strengthTest = reg.test(this.passwordValue);
-        //Entering Numbers only
-        //Repeated characters (Case insensitive)
-        //Consecutive Numbers
-        console.log("Strent Check");
+        var regOnlyNumber = new RegExp('^[0-9]+$');;
+        var regOnlyLetter = new RegExp('^[a-zA-Z]+$');
+        if(regOnlyNumber.test(this.passwordValue)){
+                //Entering Numbers only
+            return this.passwordStrength.weak;
+        }
+        else if(regOnlyLetter.test(this.passwordValue)){
+            return this.passwordStrength.weak;
+        }
+        else if(false){
+             //Repeated characters (Case insensitive)
+            return this.passwordStrength.weak;
+        }
+        else if(false){
+            //Consecutive Numbers
+            return this.passwordStrength.weak;
+        }
+        else{
+            return this.passwordStrength.strong;
+        }
 
     }
     //Check password Valid or not
