@@ -2,11 +2,16 @@
 
    var passwordObj = new Password($('#password'));
    var strengthLabel = $('#strengthLabel');
+   $('#notValidPassword').hide(); 
    var prevClass = ''
     $('#submit').on("click", function(event){
         event.preventDefault();
        // checkPassword();
         return false;
+    });
+
+    $('#showPassword').click(function(){
+        $('#password').attr('type', 'text');
     });
 
     passwordObj.passwordElement.focusout(function(e){
@@ -24,6 +29,13 @@
         if(passwordObj.passwordValue.length === 0)
             strengthLabel.addClass('strengthLabel');
         var isValidPassword = passwordObj.isValidPassword();    
+            if(!isValidPassword){
+                 $('#notValidPassword').show();
+            }else{
+              $('#notValidPassword').hide();  
+            }
+          
+           
         console.log(strength);
     });
 

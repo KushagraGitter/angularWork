@@ -41,3 +41,9 @@ label.strengthLabel{
     from{background-color: white;}
     to{background-color: red;}
 }
+.validPassword{
+ display: none;
+}
+.notValidPassword{
+    color: red;
+}

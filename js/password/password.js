@@ -21,11 +21,10 @@
     }
     //Check for password Strenght
     Password.prototype.checkStrength = function () {
-
+    if(this.passwordValue.length >=8){
         //Entering Letter only
         var regOnlyNumber = new RegExp('^[0-9]+$');;
         var regOnlyLetter = new RegExp('^[a-zA-Z]+$');
-        var regConjNumbers = new RegExp('/^\d{4}$/');
         if(regOnlyNumber.test(this.passwordValue)){
                 //Entering Numbers only
             return this.passwordStrength.weak;
@@ -40,6 +39,10 @@
         else{
             return this.passwordStrength.strong;
         }
+    }
+    else{
+        return this.passwordStrength.weak;
+    }
 
     }
     //Check password Valid or not
@@ -56,9 +59,9 @@
         function passwordLengthValidation(totalLength, passwordLengtStructure){
                 var validityNum = totalLength*0.75;
                 if(validityNum <= passwordLengtStructure.numUpper 
-                      && validityNum <= passwordLengtStructure.numLower
-                      && validityNum <= passwordLengtStructure.num
-                      && validityNum <= passwordLengtStructure.numSpclChar)
+                      + passwordLengtStructure.numLower
+                      +passwordLengtStructure.num
+                      +passwordLengtStructure.numSpclChar)
                 return true
                 else
                 return false;
@@ -70,15 +73,17 @@
     }
       
 }
-
+//Check for 3 Consecutive Seq
 Password.prototype.checkSequenceLetnNum = function(){
     for(var i=0;i<=this.passwordValue.length-3;i++){
         var c1 = this.passwordValue.charCodeAt(i);
         var c2 = this.passwordValue.charCodeAt(i+1);
         var c3 = this.passwordValue.charCodeAt(i+2);
-        if((c1-c2) === 1 && (c1-c2) === (c2-c3) ){
+        if(Math.abs(c1-c2) === 1 && (c1-c2) === (c2-c3) ){
             return true;
         }
+        else if(c1 === c2)
+            return true;
     }
     return false;
 }
