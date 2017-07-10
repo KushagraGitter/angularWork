@@ -1,3 +1,21 @@
 .form{
-   margin: 50% 
+   margin-top: 20%;
+   margin-left: 30%;
+   width: 50%;
+   height: 50%
+
+}
+.passwordStrength{
+    margin-top: 20px;
+   
+}
+.strengthColor{ 
+    display: none;
+    width: 50px;
+    height: 5px;
+    background: red;
+    float: left;
+}
+label.strengthLabel{
+    display: none;
 }

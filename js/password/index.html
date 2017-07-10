@@ -9,18 +9,22 @@
                 <label for="password">Password (required):</label>
                 <input type="password" title="Password" id="password"/>
                 <button type="submit" id="submit">Submit</button>
+                <div class="passwordStrength">
+                    <div class="strengthColor"></div>
+                    <label class="strengthLabel">Strong</label>
+                </div>
             </fieldset>
             
         </form>
-        <style src="app.css"></style>
+        <link rel="stylesheet" href="app.css" media="screen" type="text/css" />
+        
            <script
             src="https://code.jquery.com/jquery-3.2.1.js"
             integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
             crossorigin="anonymous"></script>
-            
-            
+        <script src="password.js" type="text/javaScript"></script>   
         <script src="app.js"></script>
-        <script src="passwordChecker.js"></script>
+        
      
     </body>
 </html>
